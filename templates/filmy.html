@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="{% static 'nowy.css' %}">
 </head>
 <body>
+    <a href="{% url 'nowy_film' %}">Dodaj nowy film</a>
     {% if filmy|length == 0 %}
     <h2>Brak filmów</h2>
         {% else %}
@@ -18,6 +19,8 @@
         {% for film in filmy %}
             <h3>{{ film }}</h3>
             <p>{{ film.opis }}</p>
+            <a href="{% url 'edytuj_film' film.id %}">Edytuj</a>
+            <a href="{% url 'usun_film' film.id %}">Usun</a>
         {% endfor %}
     {% endif %}
 

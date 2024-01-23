@@ -26,3 +26,11 @@ def edytuj_film(request, id):
         return redirect(wszystkie_filmy) #funkcja odsyła nas do wszystkich filmów
 
     return render(request, 'film_form.html', {'form': form})
+
+def usun_film(request, id):
+    film = get_object_or_404(Film, pk=id)
+
+    if request.method == "POST":    #sprawdzamy czy to co zostało wysłane jest post jeżeli nie to wyświetlamy normalną stronę
+        film.delete()   #jeżeli jest to go usuniemy
+        return redirect(wszystkie_filmy)    #jak skasuje to wyświetlę sobie stronę wszystkie_filmy
+    return render(request, 'potwierdz.html', {'film': film})
